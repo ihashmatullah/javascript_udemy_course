@@ -278,7 +278,7 @@ else {
 
 /*************************************************
 * FUNCTIONS
-*/
+*
 
 function calculateAge(birthYear) {
     return 2018 - birthYear;
@@ -304,3 +304,114 @@ function yearsUntilRetirement(year, firstName) {
 yearsUntilRetirement(1990, 'John');
 yearsUntilRetirement(1948, 'Mike');
 yearsUntilRetirement(1969, 'Jane');
+*/
+
+/***********************************************
+* Function Statements and Expressions
+*
+
+// Function declaration
+// Function whatDoYouDo(job, firstName) {}
+
+// Function expression
+var whatDoYouDo = function(job, firstName) {
+    switch(job) {
+        case 'teacher':
+            return firstName + ' teaches kids how to code';
+        case 'driver':
+            return firstName + ' drives a cab in lisbon';
+        case 'designer':
+            return firstName + ' designs beautiful websites';
+        default:
+            return firstName + ' does something else';
+        
+    }
+}
+
+console.log(whatDoYouDo('teacher', 'John'));
+console.log(whatDoYouDo('designer', 'Jane'));
+console.log(whatDoYouDo('retired', 'Mark'));
+
+*/
+
+/**********************************************
+* Arrays
+*
+
+// Initiate new array
+var names = ['John', 'Mark', 'Jane'];
+var years = new Array(1990, 1969, 1948);
+
+console.log(names[2]);
+console.log(names.length);
+
+// Mutate array data
+names[1] = 'Ben';
+names[names.length] = 'Mary';
+console.log(names);
+
+// Different data types
+var john = ['John', 'Smith', 1990, 'designer', false];
+
+john.push('blue');
+john.unshift('Mr.');
+console.log(john);
+
+john.pop();
+john.pop();
+john.shift();
+console.log(john);
+
+console.log(john.indexOf(23));
+
+var isDesigner = john.indexOf('designer') === -1 ? 'John is not a designer' : 'John is a designer';
+console.log(isDesigner);
+*/
+
+/************************************************
+* CODING CHALLENGE 3
+*/
+
+// 20% tip if bill < $50
+// 15% tip if bill >= $50 AND bill <= $200
+// 10% tip if bill > $ 200
+
+// TWO Arrays
+// 1. Containing all three tips (one for each bill)
+// 2. Containing all three final paid amounts (bill + tip). 
+// to find 20% of a value, mulitply 20/100 = 0.2
+//var tip;
+
+function tipCalculator (bill) {
+    if (bill < 50) {
+        tip = bill * 0.2;
+        return tip;
+    }
+    else if (bill >= 50 && bill <= 200) {
+        tip = bill * 0.15;
+        return tip;
+    }
+    else if (bill > 200) {
+        tip = bill * 0.10;
+        return tip;
+    }
+}
+
+var tip1 = tipCalculator(124);
+var tip2 = tipCalculator(48);
+var tip3 = tipCalculator(268);
+
+var tipArray = [tip1, tip2, tip3];
+console.log(tipArray);
+
+function finalBillCalculator (bill, tip) {
+    var finalBill = bill + tip;
+    return finalBill;
+}
+
+var finalBill1 = finalBillCalculator(124, tip1);
+var finalBill2 = finalBillCalculator(48, tip2);
+var finalBill3 = finalBillCalculator(268, tip3);
+
+var billArray = [finalBill1, finalBill2, finalBill3];
+console.log(billArray);
