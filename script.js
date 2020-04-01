@@ -565,14 +565,12 @@ for (i = john.length - 1; i >= 0; i--) {
 /***********************************************
 * CODING CHALLENGE 5
 */
-
 // Tip 0.20 if bill < 50
 // Tip 0.15 if bill >= 50 AND bill < 200
 // Tip 0.10 if bill > 200 
 
 var allTips = [];
 var finalAmt = [];
-
 // Implement Tip calculator using objects and loops:
 var johnObject = {
     johnBills: [124, 48, 268, 180, 42],
@@ -596,6 +594,80 @@ var johnObject = {
     }
 };
 
-
 console.log('Bills: ' + johnObject.johnBills);
+
 johnObject.calcTip();
+
+// Calculate Average of John tips
+const arrAvg = allTips.reduce((a,b) => a + b, 0) / allTips.length;
+console.log('Average of John given tips: ' + arrAvg);
+
+// Extra Challenge 
+// 4 locations 77, 375, 110, 45
+// Tip 0.20 if bill < 100 
+// Tip 0.10 if bill >= 100 && bill < 300
+// Tip 0.25 if bill > 300
+
+// Implement Tip calculator using loops and function instead of method
+
+
+function markCalcTip () {
+    var bills = [77, 475, 110, 45];
+    var tips = [];
+    var finalValues = [];
+    var sumOfTips = 0;
+    var sumOfFinalValues = 0;
+    var AvgOfTips = 0;
+    // Determine percentage based on tipping rules
+    var bill = [];
+    var percentage;
+    for (i = 0; i < bills.length; i++)
+    {
+        bill = bills[i];
+        if (bill < 100) {
+            percentage = .2;
+        }
+        else if (bill >= 100 && bill < 300) {
+            percentage = .15;
+        }
+        else if (bill > 300) {
+            percentage = .25;
+        }
+        
+        // Add results to the corresponding arrays of tips & final bills
+        tips[i] = bill * percentage;
+        finalValues[i] = bill + bill * percentage;
+        
+        // Sum of Tips
+        sumOfTips = (bill * percentage) + sumOfTips;
+        
+        // Sum of final bills/values
+        sumOfFinalValues = bill + (bill * percentage) + sumOfFinalValues;
+    }
+    
+    console.log(' ');
+    console.log('Mark Details: ')
+    console.log('Bills: ' + bills);
+    
+    // Calculate average of Tips
+    AvgOfTips = sumOfTips / tips.length;
+    
+    console.log('Tips: ' + tips);
+    console.log('Sum of Tips: ' + sumOfTips);
+    console.log('Average of Tips: ' + AvgOfTips);
+    
+    console.log('Final bills(bill+tip): ' + finalValues);
+    console.log('Total of final bills: ' + sumOfFinalValues);
+    
+    if (AvgOfTips > arrAvg) {
+        console.log('Mark\'s Family has paid more tips on average: ' + AvgOfTips + ' than John\'s family: ' + arrAvg);
+    }
+    else if (arrAvg > AvgOfTips) {
+        console.log('John\'s Family has paid more tips on average: ' + arrAvg + ' than Mark\'s family: ' + AvgOfTips);
+    }
+    else {
+        console.log('Both has paid equal tips on average');
+    }
+}
+
+markCalcTip();
