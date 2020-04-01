@@ -520,3 +520,82 @@ printHighestBMI();
 
 */
 
+/**********************************************
+* Loops and iteration
+*
+
+for (var i = 0; i < 10; i++) {
+    console.log(i);
+}
+
+var john = ['John', 'Smith', 1990, 'designer', false];
+
+for (i = 0; i < john.length; i++) {
+    console.log(john[i]);
+}
+
+var i = ;
+while(i < john.length) {
+    console.log(john[i]);
+    i++;
+}
+
+
+// continue and break statements
+
+var john = ['John', 'Smith', 1990, 'designer', false, 'blue'];
+
+for (i = 0; i < john.length; i++) {
+    if (typeof john[i] !== 'string') continue;
+    console.log(john[i]);
+}
+
+for (i = 0; i < john.length; i++) {
+    if (typeof john[i] !== 'string') break;
+    console.log(john[i]);
+}
+
+//Looping backwards
+for (i = john.length - 1; i >= 0; i--) {
+    console.log(john[i]);
+}
+
+*/
+
+/***********************************************
+* CODING CHALLENGE 5
+*/
+
+// Tip 0.20 if bill < 50
+// Tip 0.15 if bill >= 50 AND bill < 200
+// Tip 0.10 if bill > 200 
+
+var allTips = [];
+var finalAmt = [];
+
+// Implement Tip calculator using objects and loops:
+var johnObject = {
+    johnBills: [124, 48, 268, 180, 42],
+    calcTip: function () {
+        for (i = 0; i < this.johnBills.length; i++) {
+            if (this.johnBills[i] < 50) {
+                this.tip = this.johnBills[i] * 0.20;
+            }
+            else if (this.johnBills[i] >= 50 && this.johnBills[i] < 200) {
+                this.tip = this.johnBills[i] * 0.15;
+            }
+            else if (this.johnBills[i] > 200) {
+                this.tip = this.johnBills[i] * 0.10;
+            }
+            allTips[i] = this.tip;
+            finalAmt[i] = this.johnBills[i] + this.tip;
+            
+        }
+        console.log('Tips: ' + allTips);
+        console.log('Final Amount: ' + finalAmt);
+    }
+};
+
+
+console.log('Bills: ' + johnObject.johnBills);
+johnObject.calcTip();
