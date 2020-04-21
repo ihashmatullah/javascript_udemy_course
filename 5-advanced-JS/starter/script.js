@@ -159,7 +159,7 @@ function game() {
     console.log(score >= 5);
 }
 game();
-*/
+*
 
 (function () {
     var score = Math.random() * 10;
@@ -293,29 +293,145 @@ console.log(fullJapan);
 //////////////////////////////////////////
 // CODING CHALLENGE 7 Fun quiz game in the console!
 
+/* 1. Build a function constructor called Question to describe a question. A question should include:
+    a) questino itself
+    b) the answers from which the player can choose the correct one (choose an adequate data structure here, array, object, etc.)
+    c) correct answer (I would use a number for this)
+*/
+/*
+// 7. Make sure your code is private and doesn't interfere with programmers code
+(function () {
+    function Question(question, answers, correct) {
+    this.question = question;
+    this.answers = answers;
+    this.correct = correct;
+}
 
+Question.prototype.displayQuestion = function() {
+    console.log(this.question);
+    
+    for (var i = 0; i < this.answers.length; i++) {
+        console.log(i + ': ' + this.answers[i]);
+    }
+}
 
+Question.prototype.checkAnswer = function(ans) {
+    if (ans === this.correct) {
+        console.log('Correct answer!')
+    }
+    else {
+        console.log('Wrong answer. Try again');
+    }
+}
 
+// 2. Create a couple of questions using the constructor
+var q1 = new Question('What is your father name?', 
+                      ['Ahmad', 'Mahmood', 'Shafi'],
+                      1);
 
+var q2 = new Question('What is your mother name?', 
+                      ['Maryam', 'Fatima', 'Asiya'],
+                      0);
 
+var q3 = new Question('What is your job?',
+                      ['Engineer', 'Doctor', 'Clerk'],
+                      2);
 
+// 3. Store them all inside an array & 4. Select one random question from question array
+var questions = [q1, q2, q3];
 
+var n = Math.floor(Math.random() * questions.length);
 
+questions[n].displayQuestion();
 
+// 5. prompt the user for the answer
+var answer = parseInt(prompt('Please select the correct ansswer.'));
 
+// 6. Check answer
+questions[n].checkAnswer(answer);
 
+}) ();
 
+*/
 
+// Coding challenge Expert Level
+(function () {
+    function Question(question, answers, correct) {
+        this.question = question;
+        this.answers = answers;
+        this.correct = correct;
+}
+    Question.prototype.displayQuestion = function() {
+    console.log(this.question);
+    
+        for (var i = 0; i < this.answers.length; i++) {
+            console.log(i + ': ' + this.answers[i]);
+        }
+    }
+    
+    Question.prototype.checkAnswer = function(ans, callback) {
+        var sc;
+        if (ans === this.correct) {
+            console.log('Correct answer!')
+            // callback is keepscore function (closure can use different func names the way we can have different names for callback parameters/arguments)
+            sc = callback(true);
+        }
+        else {
+            console.log('Wrong answer. Try again');
+            sc = callback(false);
+        }
+        
+        this.displayScore(sc);
+    }
+    
+    Question.prototype.displayScore = function(score) {
+        console.log('Your current score is:' + score);
+        console.log('---------------------------------------');
+    }
+    
+    var q1 = new Question('What is your father name?', 
+                      ['Ahmad', 'Mahmood', 'Shafi'],
+                      1);
+    
+    var q2 = new Question('What is your mother name?', 
+                      ['Maryam', 'Fatima', 'Asiya'],
+                      0);
+    
+    var q3 = new Question('What is your job?',
+                      ['Engineer', 'Doctor', 'Clerk'],
+                      2);
 
+    var questions = [q1, q2, q3];
+    
+    function score() {
+        var sc = 0;
+        return function(correct) {
+            if (correct) {
+                sc++;
+            }
+            return sc;
+        }
+    }
+    var keepScore = score();
+    
+    function nextQuestion() {
+        var n = Math.floor(Math.random() * questions.length);
 
+        questions[n].displayQuestion();
 
+        var answer = prompt('Please select the correct ansswer.');
 
+        
+        if(answer !== 'exit') {
+            questions[n].checkAnswer(parseInt(answer), keepScore);
+            
+            nextQuestion();
+        }
+    }
+    
+    nextQuestion();
 
-
-
-
-
-
+}) ();
 
 
 
