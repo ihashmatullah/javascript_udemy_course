@@ -63,7 +63,7 @@ const createButton = (page, type) => `
     </button>
 `;
 
-// Display page buttons!
+// Display page buttons
 const renderButtons = (page, numResults, resPerPage) => {
     const pages = Math.ceil(numResults / resPerPage);
 
