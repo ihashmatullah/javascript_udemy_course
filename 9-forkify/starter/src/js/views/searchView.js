@@ -16,7 +16,7 @@ export const highlightSelected = id => {
     resultsArr.forEach(el => {
         el.classList.remove('results__link--active')
     });
-    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');  
+    document.querySelector(`.results__link[href="#${id}"]`).classList.add('results__link--active');  
 };
 
 /*
@@ -27,7 +27,7 @@ acc: 9 / acc + cur.length = 15 / newTitle = ['Pasta', 'with', 'tomato']
 acc: 15 / acc + cur.length = 18 / newTitle = ['Pasta', 'with', 'tomato'] can't add more
 because 18 > 17 so only upto 15 chars
 */
-const limitRecipeTitle = (title, limit = 17) => {
+export const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
     if (title.length > limit) {
         title.split(' ').reduce((acc, cur) => {
